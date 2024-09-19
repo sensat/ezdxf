@@ -204,6 +204,11 @@ def get_arrow_direction(vertices: list[Vec3]) -> Vec3:
     if len(vertices) < 2:
         return X_AXIS
     direction = vertices[1] - vertices[0]
+    
+    if direction.magnitude == 0:
+        # avoid division by zero when normalising
+        return X_AXIS
+    
     return direction.normalize()
 
 
